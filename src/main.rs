@@ -17,13 +17,13 @@ fn test_variable() {
 fn test_mutable_variable() {
     let mut name = "Ucup";
     println!("Hello, {}", name);
- 
+
     name = "Cup";
     println!("Hello, {}", name);
 }
 
 #[test]
-fn test_shadowing(){
+fn test_shadowing() {
     let name = "Ucup";
     println!("Hello, {}!", name);
 
@@ -39,4 +39,13 @@ multiline comments.
 fn comment() {
     // This is comment
     println!("Hello, comment!");
+}
+
+#[test]
+fn data_type_explicit() {
+    let age: i32 = 23;
+    println!("{}", age);
+
+    let price: f32 = 5000.0;
+    println!("{}", price);
 }
