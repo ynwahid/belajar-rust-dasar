@@ -30,3 +30,13 @@ fn test_shadowing(){
     let name = 10;
     println!("Hello, {}!", name);
 }
+
+/*
+These are
+multiline comments.
+*/
+#[test]
+fn comment() {
+    // This is comment
+    println!("Hello, comment!");
+}
