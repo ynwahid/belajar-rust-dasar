@@ -1,5 +1,8 @@
 fn main() {
     println!("Hello, world!");
-    println!("Hello, Bg!");
-    println!("Hello, Ucup!");
+}
+
+#[test]
+fn hello_test() {
+    println!("Hello, test!")
 }
