@@ -1,3 +1,5 @@
+use std::vec;
+
 fn main() {
     println!("Hello, world!");
 }
@@ -175,4 +177,42 @@ fn test_unit() {
 
     let test: () = unit();
     println!("{:?}", test);
+}
+
+#[test]
+fn array() {
+    let array: [i32; 5] = [1, 2, 3, 4, 5];
+    println!("{:?}", array);
+
+    let a = array[0];
+    let b = array[1];
+    println!("{} {}", a, b);
+
+    // mutable array
+    let mut array: [i32; 5] = [1, 2, 3, 4, 5];
+    println!("{:?}", array);
+
+    let a = array[0];
+    let b = array[1];
+    println!("{} {}", a, b);
+
+    array[0] = 10;
+    array[0] = 20;
+    let a = array[0];
+    let b = array[1];
+    println!("{} {}", a, b);
+
+    // array length
+    let length: usize = array.len();
+    println!("{}", length);
+}
+
+#[test]
+fn two_dimensional_array() {
+    let matrix: [[i32; 3]; 2] = [[1, 2, 3], [4, 5, 6]];
+    println!("{:?}", matrix);
+    println!("{:?}", matrix[0]);
+    println!("{:?}", matrix[0][0]);
+    println!("{:?}", matrix[0][1]);
+    println!("{:?}", matrix[0][2]);
 }
