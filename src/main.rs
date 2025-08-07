@@ -115,3 +115,15 @@ fn comparison_operator() {
     let result = a > b;
     println!("{}", result);
 }
+
+#[test]
+fn logical_operator() {
+    let absen = 70;
+    let nilai_akhir = 70;
+
+    let lulus_absen: bool = absen >= 75;
+    let lulus_nilai_akhir: bool = nilai_akhir >= 75;
+
+    let lulus = lulus_absen && lulus_nilai_akhir;
+    println!("{}", lulus);
+}
