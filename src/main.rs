@@ -216,3 +216,10 @@ fn two_dimensional_array() {
     println!("{:?}", matrix[0][1]);
     println!("{:?}", matrix[0][2]);
 }
+
+const MAXIMUM: i32 = 100;
+#[test]
+fn constant() {
+    const MINIMUM: i32 = 0;
+    println!("{} {}", MINIMUM, MAXIMUM);
+}
