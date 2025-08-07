@@ -255,3 +255,29 @@ fn function_b() {
     let b = String::from("Nur");
     println!("{}, {}", a, b);
 }
+
+#[test]
+fn string_slice() {
+    let name: &str = " Ucup Nur ";
+    let trim: &str = name.trim();
+
+    println!("{}", name);
+    println!("{}", trim);
+
+    let mut username: &str = "Ucup";
+    username = "Budi";
+    println!("{}", username);
+}
+
+#[test]
+fn string_type() {
+    let mut name: String = String::from("Ucup");
+    println!("{}", name);
+
+    name.push_str(" Nur");
+    println!("{}", name);
+
+    let budi = name.replace("Ucup", "Budi");
+    println!("{}", name);
+    println!("{}", budi);
+}
