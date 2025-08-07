@@ -107,3 +107,11 @@ fn data_type_boolean() {
     println!("{}", a);
     println!("{}", b);
 }
+
+#[test]
+fn comparison_operator() {
+    let a = 10;
+    let b = 20;
+    let result = a > b;
+    println!("{}", result);
+}
