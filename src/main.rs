@@ -223,3 +223,17 @@ fn constant() {
     const MINIMUM: i32 = 0;
     println!("{} {}", MINIMUM, MAXIMUM);
 }
+
+#[test]
+fn variable_scope() {
+    let ucup = 1;
+
+    {
+        // inner scope
+        println!("inner ucup: {}", ucup);
+        let nur = 2;
+        println!("inner nur: {}", nur);
+    }
+    // outer scope can't access inner scope
+    // println!("{}", nur)
+}
