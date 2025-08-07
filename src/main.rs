@@ -134,3 +134,45 @@ fn char_type() {
     let char2: char = 'b';
     println!("{} {}", char1, char2);
 }
+
+#[test]
+fn tuple_data_type() {
+    let data: (i32, f64, bool) = (10, 10.5, true);
+    println!("{:?}", data);
+
+    // accessing tuple elements
+    let a = data.0;
+    let b = data.1;
+    let c = data.2;
+    println!("{} {} {}", a, b, c);
+
+    // destructuring tuple
+    let (a, b, c) = data;
+    println!("{} {} {}", a, b, c);
+
+    // use underscore if the element is unused
+    let (a, b, _) = data;
+    println!("{} {}", a, b);
+
+    // mutable tuple
+    let mut data: (i32, f64, bool) = (10, 10.5, true);
+    data.0 = 20;
+    data.1 = 11.5;
+    data.2 = false;
+
+    let (a, b, c) = data;
+    println!("{} {} {}", a, b, c);
+}
+
+fn unit() {
+    println!("Hello, world!");
+}
+
+#[test]
+fn test_unit() {
+    let result = unit();
+    println!("{:?}", result);
+
+    let test: () = unit();
+    println!("{:?}", test);
+}
