@@ -127,3 +127,10 @@ fn logical_operator() {
     let lulus = lulus_absen && lulus_nilai_akhir;
     println!("{}", lulus);
 }
+
+#[test]
+fn char_type() {
+    let char1: char = 'a';
+    let char2: char = 'b';
+    println!("{} {}", char1, char2);
+}
