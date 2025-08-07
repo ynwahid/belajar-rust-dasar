@@ -99,3 +99,11 @@ fn augmented_assignment() {
     a -= 10;
     println!("{}", a);
 }
+
+#[test]
+fn data_type_boolean() {
+    let a = true;
+    let b: bool = false;
+    println!("{}", a);
+    println!("{}", b);
+}
