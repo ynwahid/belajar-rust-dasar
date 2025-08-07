@@ -49,3 +49,29 @@ fn data_type_explicit() {
     let price: f32 = 5000.0;
     println!("{}", price);
 }
+
+#[test]
+fn data_type_number() {
+    let a = 10;
+    println!("{}", a);
+
+    let b: f32 = 10.5;
+    println!("{}", b);
+}
+
+#[test]
+fn data_type_number_conversion() {
+    let a = 10;
+    println!("{}", a);
+
+    let b: i16 = a as i16;
+    println!("{}", b);
+
+    let c: i32 = b as i32;
+    println!("{}", c);
+
+    // integer overflow
+    let d: i64 = 1_000_000_000;
+    let e: i8 = d as i8;
+    println!("{}", e);
+}
