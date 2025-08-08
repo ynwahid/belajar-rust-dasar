@@ -281,3 +281,36 @@ fn string_type() {
     println!("{}", name);
     println!("{}", budi);
 }
+
+#[test]
+fn data_copy() {
+    let a = 10;
+
+    // ownership does not transferred
+    // because it's stack-based variable, thus uses copy method
+    let mut b = a;
+    b = 12;
+    println!("{} {}", a, b);
+}
+
+#[test]
+fn ownership_movement() {
+    let name1 = String::from("Ucup");
+    println!("{}", name1);
+
+    // ownership transferred from name1 to name2
+    let name2 = name1;
+    println!("{}", name2);
+}
+
+#[test]
+fn clone() {
+    let name1 = String::from("Ucup");
+    println!("{}", name1);
+
+    // ownership does not transferred from name1 to name2
+    // because it uses clone method
+    let name2 = name1.clone();
+    println!("{}", name1);
+    println!("{}", name2);
+}
