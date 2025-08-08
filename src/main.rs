@@ -393,3 +393,14 @@ fn loop_label() {
         number += 1;
     }
 }
+
+#[test]
+fn while_loop() {
+    let mut counter = 0;
+    while counter <= 10 {
+        if counter % 2 == 0 {
+            println!("{}", counter);
+        }
+        counter += 1;
+    }
+}
