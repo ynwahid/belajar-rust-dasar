@@ -449,3 +449,45 @@ fn range_inclusive_loop() {
         println!("{}", array[i]);
     }
 }
+
+fn say_hello() {
+    println!("Hello!");
+}
+
+fn say_goodbye(first_name: &str, last_name: &str) {
+    println!("Goodbye {} {}!", first_name, last_name);
+}
+
+#[test]
+fn test_say_hello() {
+    say_hello();
+    say_goodbye("Ucup", "Nur");
+}
+
+fn factorial_loop(n: i32) -> i32 {
+    let mut result = 1;
+    if n < 1 {
+        return result;
+    }
+
+    for i in 1..=n {
+        result *= i;
+    }
+    return result;
+}
+
+fn factorial_recursive(n: u32) -> u32 {
+    if n < 1 {
+        return 1;
+    }
+    return n * factorial_recursive(n - 1);
+}
+
+#[test]
+fn test_factorial_loop() {
+    let result = factorial_loop(5);
+    println!("{}", result);
+
+    let result = factorial_recursive(5);
+    println!("{}", result);
+}
