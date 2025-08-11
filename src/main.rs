@@ -1,3 +1,5 @@
+use core::num;
+
 fn main() {
     println!("Hello, world!");
 }
@@ -490,4 +492,55 @@ fn test_factorial_loop() {
 
     let result = factorial_recursive(5);
     println!("{}", result);
+}
+
+fn print_number(n: i32) {
+    println!("Number: {}", n)
+}
+
+fn hi(name: String) {
+    println!("Hi {}", name)
+}
+
+#[test]
+fn function_parameter_ownership() {
+    // stack-based values will be cloned, thus we can reuse them
+    let number = 10;
+    print_number(number);
+    println!("{}", number);
+
+    // heap-based values will be transferred, thus we can't reuse them
+    let name = String::from("Ucup");
+    hi(name);
+}
+
+fn full_name(first_name: String, last_name: String) -> String {
+    format!("{} {}", first_name, last_name)
+}
+
+#[test]
+fn function_return_value_ownership() {
+    // stack-based return values will be cloned
+    // heap-based return values will be transferred
+    let first_name = String::from("Ucup");
+    let last_name = String::from("Nur");
+    let full_name = full_name(first_name, last_name);
+    println!("{}", full_name);
+}
+
+fn full_name_tuple(first_name: String, last_name: String) -> (String, String, String) {
+    let full_name = format!("{} {}", first_name, last_name);
+    return (first_name, last_name, full_name);
+}
+
+#[test]
+fn function_reobtain_parameter_ownership() {
+    // heap-based return values will be transferred
+    // thus, if we want to reobtain the parameter values, we can use tuple
+    let first_name = String::from("Ucup");
+    let last_name = String::from("Nur");
+    let (first_name, last_name, full_name) = full_name_tuple(first_name, last_name);
+    println!("{}", first_name);
+    println!("{}", last_name);
+    println!("{}", full_name);
 }
