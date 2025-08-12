@@ -544,3 +544,65 @@ fn function_reobtain_parameter_ownership() {
     println!("{}", last_name);
     println!("{}", full_name);
 }
+
+fn full_name_reference(first_name: &String, last_name: &String) -> String {
+    return format!("{} {}", first_name, last_name);
+}
+
+#[test]
+fn test_full_name_reference() {
+    let first_name = String::from("Ucup");
+    let last_name = String::from("Nur");
+
+    let full_name = full_name_reference(&first_name, &last_name);
+    println!("{}", full_name);
+    println!("{}", first_name);
+    println!("{}", last_name);
+}
+
+fn change_value(value: &String) {
+    // By default we can't modify
+    // value.push_str("test");
+}
+
+#[test]
+fn test_change_value_when_borrowing() {
+    let mut value = String::from("Ucup");
+    change_value(&value);
+    println!("{}", value);
+}
+
+fn change_mutable_reference_value(value: &mut String) {
+    // By default we can't modify
+    value.push_str(" test");
+}
+
+#[test]
+fn test_change_mutable_reference_value_when_borrowing() {
+    let mut value = String::from("Ucup");
+    let borrowed_value = &mut value;
+    change_mutable_reference_value(borrowed_value);
+    change_mutable_reference_value(borrowed_value);
+    change_mutable_reference_value(borrowed_value);
+    println!("{}", borrowed_value);
+}
+
+// dangling reference
+// fn get_full_name(first_name: &String, last_name: &String) -> &String {
+//     let name = format!("{} {}", first_name, last_name);
+//     return &name;
+// }
+
+fn get_full_name(first_name: &String, last_name: &String) -> String {
+    let name = format!("{} {}", first_name, last_name);
+    return name;
+}
+
+#[test]
+fn test_get_full_name() {
+    let first_name = String::from("Ucup");
+    let last_name = String::from("Nur");
+
+    let full_name = get_full_name(&first_name, &last_name);
+    println!("{}", full_name);
+}
