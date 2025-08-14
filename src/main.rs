@@ -622,3 +622,14 @@ fn slice_reference() {
     let slice4 = slice3;
     println!("{:?}", slice3);
 }
+
+#[test]
+fn string_slice_reference() {
+    let name = String::from("Ucup Nur");
+
+    let first_name: &str = &name[0..5];
+    println!("{}", first_name);
+
+    let last_name: &str = &name[5..];
+    println!("{}", last_name);
+}
