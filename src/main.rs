@@ -1,4 +1,5 @@
 use core::num;
+use std::ops::Not;
 
 fn main() {
     println!("Hello, world!");
@@ -632,4 +633,77 @@ fn string_slice_reference() {
 
     let last_name: &str = &name[5..];
     println!("{}", last_name);
+}
+
+#[derive(Debug)]
+struct Person {
+    first_name: String,
+    mid_name: String,
+    last_name: String,
+    age: u8,
+}
+
+fn print_person(person: &Person) {
+    println!("{}", person.first_name);
+    println!("{}", person.mid_name);
+    println!("{}", person.last_name);
+    println!("{}", person.age);
+}
+
+#[test]
+fn struct_person() {
+    let person: Person = Person {
+        first_name: String::from("Ucup"),
+        mid_name: String::from("Nur"),
+        last_name: String::from("Wahid"),
+        age: 20,
+    };
+    print_person(&person);
+    println!("{:?}", person);
+
+    // init shorthand
+    // it will transfer the ownership if the data is stored in heap
+    let first_name: String = String::from("Ucup");
+    let last_name: String = String::from("Wahid");
+    let person: Person = Person {
+        first_name,
+        mid_name: String::from("Nur"),
+        last_name,
+        age: 20,
+    };
+    print_person(&person);
+    println!("{:?}", person);
+
+    // init a new instance with another instance's values
+    // it will transfer the ownership if the data is stored in heap
+    let person2 = Person { ..person };
+    print_person(&person2);
+    println!("{:?}", person2);
+
+    // init with clone method
+    let person3 = Person {
+        first_name: person2.first_name.clone(),
+        mid_name: person2.mid_name.clone(),
+        last_name: person2.last_name.clone(),
+        ..person2
+    };
+    print_person(&person3);
+    println!("{:?}", person3);
+}
+
+struct GeoPoint(f64, f64);
+
+#[test]
+fn tuple_struct() {
+    let geo_point = GeoPoint(-5.001, 10.020);
+    println!("{}", geo_point.0);
+    println!("{}", geo_point.1);
+}
+
+struct Nothing;
+
+#[test]
+fn test_nothing() {
+    let _nothing1: Nothing = Nothing;
+    let _nothing2: Nothing = Nothing {};
 }
