@@ -858,3 +858,38 @@ fn test_match_range() {
         }
     }
 }
+
+#[test]
+fn test_match_struct() {
+    let point = GeoPoint::new(0.1, 1.0);
+
+    match point {
+        GeoPoint(long, 0.0) => {
+            println!("long: {}", long);
+        }
+        GeoPoint(0.0, lat) => {
+            println!("latitude: {}", lat);
+        }
+        GeoPoint(long, lat) => {
+            println!("longitude {} latitude {}", long, lat);
+        }
+    }
+
+    let person: Person = Person {
+        first_name: String::from("Ucup"),
+        mid_name: String::from("Nur"),
+        last_name: String::from("Wahid"),
+        age: 20,
+    };
+
+    match person {
+        Person {
+            first_name,
+            last_name,
+            ..
+        } => {
+            println!("{} {}", first_name, last_name);
+        }
+    }
+    {}
+}
