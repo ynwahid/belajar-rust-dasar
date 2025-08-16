@@ -778,3 +778,19 @@ fn test_payment() {
     let _payment3: Payment = Payment::EWallet(String::from("Gopay"), String::from("123"));
     _payment3.Pay(12000);
 }
+
+#[test]
+fn test_enum_match() {
+    let level: Level = Level::Regular;
+    match level {
+        Level::Regular => {
+            println!("Regular");
+        }
+        Level::Premium => {
+            println!("Premium");
+        }
+        Level::Platinum => {
+            println!("Platinum");
+        }
+    }
+}
