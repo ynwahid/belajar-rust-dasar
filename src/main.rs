@@ -943,3 +943,23 @@ fn test_match_expression() {
     };
     println!("{}", result);
 }
+
+type Age = u8;
+type IdentityNumber = String;
+
+struct Customer {
+    id: IdentityNumber,
+    name: String,
+    age: Age,
+}
+
+#[test]
+fn test_customer() {
+    let customer = Customer {
+        id: String::from("123"),
+        name: String::from("Ucup"),
+        age: 20,
+    };
+
+    println!("{} {} {}", customer.id, customer.name, customer.age);
+}
