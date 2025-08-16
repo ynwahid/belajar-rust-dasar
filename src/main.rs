@@ -635,14 +635,6 @@ fn string_slice_reference() {
     println!("{}", last_name);
 }
 
-#[derive(Debug)]
-struct Person {
-    first_name: String,
-    mid_name: String,
-    last_name: String,
-    age: u8,
-}
-
 fn print_person(person: &Person) {
     println!("{}", person.first_name);
     println!("{}", person.mid_name);
@@ -691,8 +683,6 @@ fn struct_person() {
     println!("{:?}", person3);
 }
 
-struct GeoPoint(f64, f64);
-
 #[test]
 fn tuple_struct() {
     let geo_point = GeoPoint(-5.001, 10.020);
@@ -706,4 +696,45 @@ struct Nothing;
 fn test_nothing() {
     let _nothing1: Nothing = Nothing;
     let _nothing2: Nothing = Nothing {};
+}
+
+#[derive(Debug)]
+struct Person {
+    first_name: String,
+    mid_name: String,
+    last_name: String,
+    age: u8,
+}
+
+impl Person {
+    // prevent transfer ownership by using reference
+    fn say_hello(&self, name: &str) {
+        println!("Hello {}, my name is {}.", name, self.first_name)
+    }
+}
+
+#[test]
+fn test_method() {
+    let person = Person {
+        first_name: String::from("Ucup"),
+        mid_name: String::from("Nur"),
+        last_name: String::from("Wahid"),
+        age: 20,
+    };
+    person.say_hello("Riki");
+}
+
+struct GeoPoint(f64, f64);
+
+impl GeoPoint {
+    fn new(long: f64, lat: f64) -> GeoPoint {
+        return GeoPoint(long, lat);
+    }
+}
+
+#[test]
+fn test_associated_function() {
+    let geo_point: GeoPoint = GeoPoint::new(10.0, 10.0);
+    println!("long: {}", geo_point.0);
+    println!("lat: {}", geo_point.1);
 }
