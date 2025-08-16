@@ -930,3 +930,16 @@ fn test_ignore_match() {
         }
     }
 }
+
+#[test]
+fn test_match_expression() {
+    let value = 9;
+
+    let result = match value {
+        0 => "nil",
+        1 => "one",
+        2 => "two",
+        _ => "invalid",
+    };
+    println!("{}", result);
+}
