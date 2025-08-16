@@ -810,3 +810,20 @@ fn test_enum_match() {
         }
     }
 }
+
+#[test]
+fn test_match_value() {
+    let name = "Ucup";
+
+    match name {
+        "Anemon" => {
+            println!("Hello, Anemon");
+        }
+        "Budi" => {
+            println!("Hello, Budi");
+        }
+        other => {
+            println!("Hello, {}", other);
+        }
+    }
+}
