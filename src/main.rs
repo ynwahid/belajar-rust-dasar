@@ -893,3 +893,40 @@ fn test_match_struct() {
     }
     {}
 }
+
+#[test]
+fn test_ignore_match() {
+    let point = GeoPoint::new(0.1, 1.0);
+
+    match point {
+        GeoPoint(long, _) => {
+            println!("long: {}", long);
+        }
+        GeoPoint(_, lat) => {
+            println!("latitude: {}", lat);
+        }
+        GeoPoint(long, lat) => {
+            println!("longitude {} latitude {}", long, lat);
+        }
+    }
+
+    let value = 100;
+
+    match value {
+        75..=100 => {
+            println!("Great");
+        }
+        50..=74 => {
+            println!("Good");
+        }
+        25..=49 => {
+            println!("Not Bad");
+        }
+        0..=24 => {
+            println!("Bad");
+        }
+        _ => {
+            println!("Invalid value");
+        }
+    }
+}
