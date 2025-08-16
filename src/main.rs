@@ -836,3 +836,25 @@ fn test_match_value() {
         }
     }
 }
+
+#[test]
+fn test_match_range() {
+    let value = 100;
+    match value {
+        75..=100 => {
+            println!("Great");
+        }
+        50..=74 => {
+            println!("Good");
+        }
+        25..=49 => {
+            println!("Not Bad");
+        }
+        0..=24 => {
+            println!("Bad");
+        }
+        other => {
+            println!("Invalid value {}", other);
+        }
+    }
+}
