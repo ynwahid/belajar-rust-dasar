@@ -826,4 +826,13 @@ fn test_match_value() {
             println!("Hello, {}", other);
         }
     }
+
+    match name {
+        "Anemon" | "Budi" => {
+            println!("Hello, Bro");
+        }
+        other => {
+            println!("Hello, {}", other);
+        }
+    }
 }
