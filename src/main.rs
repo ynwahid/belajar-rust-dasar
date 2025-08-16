@@ -753,23 +753,39 @@ fn test_enum() {
 }
 
 enum Payment {
-    // card number
-    CreditCard(String),
+    // debit card number
+    DebitCard(String),
     // bank name and account number
     BankTransfer(String, String),
-    // e-wallet name and number
+    // e-wallet name and account number
     EWallet(String, String),
 }
 
 impl Payment {
     fn Pay(&self, amount: u32) {
-        println!("pay with amount: {}", amount);
+        match self {
+            Payment::DebitCard(number) => {
+                println!("paying with debit card {} amount: {}", number, amount);
+            }
+            Payment::BankTransfer(name, account_number) => {
+                println!(
+                    "paying with bank transfer {} {} amount: {}",
+                    name, account_number, amount
+                );
+            }
+            Payment::EWallet(name, account_number) => {
+                println!(
+                    "paying with e-wallet {} {} amount: {}",
+                    name, account_number, amount
+                );
+            }
+        }
     }
 }
 
 #[test]
 fn test_payment() {
-    let _payment1: Payment = Payment::CreditCard(String::from("123"));
+    let _payment1: Payment = Payment::DebitCard(String::from("123"));
     _payment1.Pay(10000);
 
     let _payment2: Payment = Payment::BankTransfer(String::from("BSI"), String::from("123"));
