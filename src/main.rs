@@ -989,3 +989,31 @@ fn test_customer() {
 
     println!("{} {} {}", customer.id, customer.name, customer.age);
 }
+
+trait CanSayHello {
+    fn say_hello(&self) -> String;
+    fn say_hello_to(&self, name: &str) -> String;
+}
+
+impl CanSayHello for Person {
+    fn say_hello(&self) -> String {
+        return format!("Hello my name is {}.", self.first_name);
+    }
+
+    fn say_hello_to(&self, name: &str) -> String {
+        return format!("Hello {}, my name is {}.", name, self.first_name);
+    }
+}
+
+#[test]
+fn test_trait() {
+    let person: Person = Person {
+        first_name: String::from("Ucup"),
+        mid_name: String::from("Nur"),
+        last_name: String::from("Wahid"),
+        age: 20,
+    };
+    
+    let result = person.say_hello_to("Budi");
+    println!("{}", result);
+}
