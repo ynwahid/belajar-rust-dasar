@@ -1365,3 +1365,13 @@ fn test_closure_as_parameter() {
     let filter = |value: String| -> String { return value.to_uppercase() };
     print_with_filter(String::from("Ucup"), filter);
 }
+
+fn to_uppercase(value: String) -> String {
+    return value.to_uppercase();
+}
+
+#[test]
+fn test_function_as_closure() {
+    let filter = to_uppercase;
+    print_with_filter(String::from("Ucup"), filter);
+}
