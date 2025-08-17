@@ -1008,6 +1008,10 @@ impl CanSayHello for Person {
     }
 }
 
+fn say_hello_trait(obj: &impl CanSayHello) {
+    println!("{}", obj.say_hello())
+}
+
 #[test]
 fn test_trait() {
     let person: Person = Person {
@@ -1022,4 +1026,6 @@ fn test_trait() {
 
     let hello = person.hello();
     println!("{}", hello);
+
+    say_hello_trait(&person);
 }
