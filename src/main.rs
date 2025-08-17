@@ -14,9 +14,11 @@ pub mod model {
     }
 }
 
+use model::User;
+
 #[test]
 fn test_module() {
-    let user: model::User = model::User {
+    let user: User = User {
         first_name: String::from("Ucup"),
         last_name: String::from("Wahid"),
         username: String::from("ucup123"),
@@ -25,6 +27,28 @@ fn test_module() {
     };
     user.say_hello("Bro");
 }
+
+mod first {
+    pub fn say_hello_module() {
+        println!("Hello from first module")
+    }
+}
+
+mod second {
+    pub fn say_hello_module() {
+        println!("Hello from second module")
+    }
+}
+
+use first::say_hello_module;
+use second::say_hello_module as say_hello_module_second;
+
+#[test]
+fn test_module_use() {
+    say_hello_module();
+    say_hello_module_second();
+}
+
 fn main() {
     println!("Hello, world!");
 }
