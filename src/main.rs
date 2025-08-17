@@ -15,9 +15,10 @@ fn test_module() {
 
 mod first;
 mod second;
+mod third;
 
-use first::say_hello_module;
-use second::say_hello_module as say_hello_module_second;
+use crate::first::say_hello_module;
+use crate::second::say_hello_module as say_hello_module_second;
 
 #[test]
 fn test_module_use() {
