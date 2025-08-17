@@ -1276,3 +1276,34 @@ fn test_option_enum() {
     let result = double(None);
     println!("{:?}", result);
 }
+
+impl PartialEq for Apple {
+    fn eq(&self, other: &Self) -> bool {
+        self.quantity == other.quantity
+    }
+}
+
+impl PartialOrd for Apple {
+    fn partial_cmp(&self, other: &Self) -> Option<std::cmp::Ordering> {
+        // below is shorthand
+        // self.quantity.partial_cmp(&other.quantity)
+        // below is manual code
+        if self.quantity < other.quantity {
+            Some(std::cmp::Ordering::Less)
+        } else if self.quantity > other.quantity {
+            Some(std::cmp::Ordering::Greater)
+        } else {
+            Some(std::cmp::Ordering::Equal)
+        }
+    }
+}
+
+#[test]
+fn test_comparing() {
+    let apple1 = Apple { quantity: 10 };
+    let apple2 = Apple { quantity: 20 };
+
+    println!("Apple1 == Apple2: {}", apple1 == apple2);
+    println!("Apple1 < Apple2: {}", apple1 < apple2);
+    println!("Apple1 > Apple2: {}", apple1 > apple2);
+}
