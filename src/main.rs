@@ -991,6 +991,9 @@ fn test_customer() {
 }
 
 trait CanSayHello {
+    fn hello(&self) -> String {
+        return String::from("Hello");
+    }
     fn say_hello(&self) -> String;
     fn say_hello_to(&self, name: &str) -> String;
 }
@@ -1013,7 +1016,10 @@ fn test_trait() {
         last_name: String::from("Wahid"),
         age: 20,
     };
-    
+
     let result = person.say_hello_to("Budi");
     println!("{}", result);
+
+    let hello = person.hello();
+    println!("{}", hello);
 }
