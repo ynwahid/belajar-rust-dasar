@@ -1307,3 +1307,18 @@ fn test_comparing() {
     println!("Apple1 < Apple2: {}", apple1 < apple2);
     println!("Apple1 > Apple2: {}", apple1 > apple2);
 }
+
+#[test]
+fn test_string_manipulation() {
+    let s = String::from("Ucup Nur Wahid");
+
+    println!("s.to_uppercase: {}", s.to_uppercase());
+    println!("s.to_lowercase: {}", s.to_lowercase());
+    println!("s.len: {}", s.len());
+    println!("s.replace: {}", s.replace("Ucup", "Cakcup"));
+    println!("s.contains: {}", s.contains("Wahid"));
+    println!("s.starts_with: {}", s.starts_with("Ucup"));
+    println!("s.ends_with: {}", s.ends_with("Wahid"));
+    println!("s slice: {}", &s[0..4]);
+    println!("s.get: {:?}", s.get(0..4));
+}
