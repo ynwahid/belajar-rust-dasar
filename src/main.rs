@@ -1081,3 +1081,16 @@ fn test_return_trait() {
     let person = create_person(String::from("Ucup"));
     person.good_bye();
 }
+
+#[test]
+fn test_trait_conflict_implementation() {
+    let person: Person = Person {
+        first_name: String::from("Ucup"),
+        mid_name: String::from("Nur"),
+        last_name: String::from("Wahid"),
+        age: 20,
+    };
+
+    println!("{}", CanSayHello::say_hello(&person));
+    Person::say_hello(&person, "Budi");
+}
