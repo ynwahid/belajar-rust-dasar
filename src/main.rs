@@ -1375,3 +1375,42 @@ fn test_function_as_closure() {
     let filter = to_uppercase;
     print_with_filter(String::from("Ucup"), filter);
 }
+
+#[test]
+fn test_closure_scope() {
+    let mut counter = 0;
+
+    let mut increment = || {
+        counter += 1;
+        println!("Increment");
+    };
+
+    increment();
+    increment();
+    increment();
+
+    println!("{}", counter);
+}
+
+// it's better to use struct and implement a function to modify an attribute
+// than using closure
+struct Counter {
+    counter: i32,
+}
+
+impl Counter {
+    fn increment(&mut self) {
+        self.counter += 1;
+        println!("Increment");
+    }
+}
+
+#[test]
+fn test_counter() {
+    let mut counter = Counter { counter: 0 };
+    counter.increment();
+    counter.increment();
+    counter.increment();
+
+    println!("{}", counter.counter);
+}
