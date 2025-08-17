@@ -1169,3 +1169,17 @@ fn test_generic_enum() {
         }
     }
 }
+
+struct Hi<T: CanSayGoodBye> {
+    value: T,
+}
+
+#[test]
+fn test_generic_bound() {
+    let hi = Hi::<SimplePerson> {
+        value: SimplePerson {
+            name: String::from("Ucup"),
+        },
+    };
+    println!("{}", hi.value.name);
+}
