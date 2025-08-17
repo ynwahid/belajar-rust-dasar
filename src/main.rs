@@ -24,6 +24,7 @@ use crate::second::say_hello_module as say_hello_module_second;
 fn test_module_use() {
     say_hello_module();
     say_hello_module_second();
+    first::second::third::say_hello_module();
 }
 
 fn main() {
