@@ -1217,11 +1217,17 @@ fn test_generic_method() {
     println!("{}", point.get_y());
 }
 
-trait GetValue<T> {
+trait GetValue<T>
+where
+    T: PartialOrd,
+{
     fn get_value(&self) -> &T;
 }
 
-impl<T> GetValue<T> for Point<T> {
+impl<T> GetValue<T> for Point<T>
+where
+    T: PartialOrd,
+{
     fn get_value(&self) -> &T {
         return &self.x;
     }
