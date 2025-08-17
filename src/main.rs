@@ -1216,3 +1216,13 @@ fn test_generic_method() {
     println!("{}", point.get_x());
     println!("{}", point.get_y());
 }
+
+trait GetValue<T> {
+    fn get_value(&self) -> &T;
+}
+
+impl<T> GetValue<T> for Point<T> {
+    fn get_value(&self) -> &T {
+        return &self.x;
+    }
+}
