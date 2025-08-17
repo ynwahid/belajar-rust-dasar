@@ -1183,3 +1183,19 @@ fn test_generic_bound() {
     };
     println!("{}", hi.value.name);
 }
+
+fn min<T: PartialOrd>(value1: T, value2: T) -> T {
+    if value1 < value2 {
+        return value1;
+    }
+    return value2;
+}
+
+#[test]
+fn test_generic_in_function() {
+    let result = min::<i32>(1, 2);
+    println!("{}", result);
+
+    let result = min(30, 10);
+    println!("{}", result);
+}
