@@ -1199,3 +1199,20 @@ fn test_generic_in_function() {
     let result = min(30, 10);
     println!("{}", result);
 }
+
+impl<T> Point<T> {
+    fn get_x(&self) -> &T {
+        return &self.x;
+    }
+
+    fn get_y(&self) -> &T {
+        return &self.y;
+    }
+}
+
+#[test]
+fn test_generic_method() {
+    let point = Point { x: 10, y: 20 };
+    println!("{}", point.get_x());
+    println!("{}", point.get_y());
+}
