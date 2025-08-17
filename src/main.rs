@@ -1260,3 +1260,19 @@ fn test_operator_add() {
 
     println!("{}", apple3.quantity);
 }
+
+fn double(value: Option<i32>) -> Option<i32> {
+    match value {
+        None => None,
+        Some(value) => Some(value * 2),
+    }
+}
+
+#[test]
+fn test_option_enum() {
+    let result = double(Some(10));
+    println!("{:?}", result);
+
+    let result = double(None);
+    println!("{:?}", result);
+}
