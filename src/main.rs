@@ -1354,3 +1354,14 @@ fn test_closure() {
     let result = sum(1, 2);
     println!("{}", result);
 }
+
+fn print_with_filter(value: String, filter: fn(String) -> String) {
+    let result = filter(value);
+    println!("{}", result);
+}
+
+#[test]
+fn test_closure_as_parameter() {
+    let filter = |value: String| -> String { return value.to_uppercase() };
+    print_with_filter(String::from("Ucup"), filter);
+}
