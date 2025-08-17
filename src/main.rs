@@ -1057,3 +1057,27 @@ fn test_trait() {
 
     hello_and_good_bye(&person);
 }
+
+struct SimplePerson {
+    name: String,
+}
+
+impl CanSayGoodBye for SimplePerson {
+    fn good_bye(&self) -> String {
+        return format!("Good bye, my name is {}.", self.name);
+    }
+
+    fn good_bye_to(&self, name: &str) -> String {
+        return format!("Good bye {}, my name is {}.", name, self.name);
+    }
+}
+
+fn create_person(name: String) -> impl CanSayGoodBye {
+    return SimplePerson { name };
+}
+
+#[test]
+fn test_return_trait() {
+    let person = create_person(String::from("Ucup"));
+    person.good_bye();
+}
