@@ -1094,3 +1094,45 @@ fn test_trait_conflict_implementation() {
     println!("{}", CanSayHello::say_hello(&person));
     Person::say_hello(&person, "Budi");
 }
+
+trait CanSay: CanSayHello + CanSayGoodBye {
+    // we have to implement those super traits
+    fn say(&self) {
+        println!("{}", self.say_hello());
+        println!("{}", self.good_bye());
+    }
+}
+
+struct SimpleMan {
+    name: String,
+}
+
+impl CanSayHello for SimpleMan {
+    fn say_hello(&self) -> String {
+        return format!("Hello my name is {}.", self.name);
+    }
+
+    fn say_hello_to(&self, name: &str) -> String {
+        return format!("Hello {}, my name is {}.", name, self.name);
+    }
+}
+
+impl CanSayGoodBye for SimpleMan {
+    fn good_bye(&self) -> String {
+        return format!("Good bye, my name is {}.", self.name);
+    }
+
+    fn good_bye_to(&self, name: &str) -> String {
+        return format!("Good bye {}, my name is {}.", name, self.name);
+    }
+}
+
+impl CanSay for SimpleMan {}
+
+#[test]
+fn test_trait_inheritance() {
+    let simple_man = SimpleMan {
+        name: String::from("Ucup"),
+    };
+    simple_man.say();
+}
