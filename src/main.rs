@@ -1136,3 +1136,36 @@ fn test_trait_inheritance() {
     };
     simple_man.say();
 }
+
+struct Point<T> {
+    x: T,
+    y: T,
+}
+
+#[test]
+fn test_generic_struct() {
+    let int_point: Point<i32> = Point { x: 1, y: 2 };
+    let float_point: Point<f64> = Point { x: 1.1, y: 2.2 };
+
+    println!("{} {}", int_point.x, int_point.y);
+    println!("{} {}", float_point.x, float_point.y);
+}
+
+enum Value<T> {
+    NONE,
+    VALUE(T),
+}
+
+#[test]
+fn test_generic_enum() {
+    let value = Value::<i32>::VALUE(10);
+
+    match value {
+        Value::NONE => {
+            println!("None");
+        }
+        Value::VALUE(value) => {
+            println!("Value: {}", value);
+        }
+    }
+}
