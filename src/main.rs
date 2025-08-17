@@ -1,6 +1,30 @@
-use core::num;
-use std::ops::Not;
+pub mod model {
+    pub struct User {
+        pub first_name: String,
+        pub last_name: String,
+        pub username: String,
+        pub email: String,
+        pub age: u8,
+    }
 
+    impl User {
+        pub fn say_hello(&self, name: &str) {
+            println!("Hello {}, my name is {}.", name, self.first_name);
+        }
+    }
+}
+
+#[test]
+fn test_module() {
+    let user: model::User = model::User {
+        first_name: String::from("Ucup"),
+        last_name: String::from("Wahid"),
+        username: String::from("ucup123"),
+        email: String::from("ucup123@mail.com"),
+        age: 20,
+    };
+    user.say_hello("Bro");
+}
 fn main() {
     println!("Hello, world!");
 }
