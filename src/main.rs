@@ -1232,3 +1232,8 @@ where
         return &self.x;
     }
 }
+
+struct Geo<T = i32> {
+    x: T,
+    y: T,
+}
