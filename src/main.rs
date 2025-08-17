@@ -1237,3 +1237,26 @@ struct Geo<T = i32> {
     x: T,
     y: T,
 }
+
+struct Apple {
+    quantity: i32,
+}
+
+impl core::ops::Add for Apple {
+    type Output = Apple;
+
+    fn add(self, rhs: Self) -> Self::Output {
+        return Apple {
+            quantity: self.quantity + rhs.quantity,
+        };
+    }
+}
+
+#[test]
+fn test_operator_add() {
+    let apple1 = Apple { quantity: 1 };
+    let apple2 = Apple { quantity: 2 };
+    let apple3 = apple1 + apple2;
+
+    println!("{}", apple3.quantity);
+}
