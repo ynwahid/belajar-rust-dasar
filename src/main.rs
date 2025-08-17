@@ -998,6 +998,11 @@ trait CanSayHello {
     fn say_hello_to(&self, name: &str) -> String;
 }
 
+trait CanSayGoodBye {
+    fn good_bye(&self) -> String;
+    fn good_bye_to(&self, name: &str) -> String;
+}
+
 impl CanSayHello for Person {
     fn say_hello(&self) -> String {
         return format!("Hello my name is {}.", self.first_name);
@@ -1008,8 +1013,23 @@ impl CanSayHello for Person {
     }
 }
 
+impl CanSayGoodBye for Person {
+    fn good_bye(&self) -> String {
+        return format!("Good bye, my name is {}.", self.first_name);
+    }
+
+    fn good_bye_to(&self, name: &str) -> String {
+        return format!("Good bye {}, my name is {}.", name, self.first_name);
+    }
+}
+
 fn say_hello_trait(obj: &impl CanSayHello) {
     println!("{}", obj.say_hello())
+}
+
+fn hello_and_good_bye(obj: &(impl CanSayHello + CanSayGoodBye)) {
+    println!("{}", obj.say_hello());
+    println!("{}", obj.good_bye());
 }
 
 #[test]
@@ -1028,4 +1048,12 @@ fn test_trait() {
     println!("{}", hello);
 
     say_hello_trait(&person);
+
+    let result = person.good_bye();
+    println!("{}", result);
+
+    let result = person.good_bye_to("Budi");
+    println!("{}", result);
+
+    hello_and_good_bye(&person);
 }
