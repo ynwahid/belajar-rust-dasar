@@ -1603,3 +1603,42 @@ fn test_recoverable_error() {
         }
     }
 }
+
+fn connect_email(host: Option<String>) -> Result<String, String> {
+    match host {
+        None => Err("No email host provided".to_string()),
+        Some(host) => Ok(host),
+    }
+}
+
+fn connect_application(host: Option<String>) -> Result<String, String> {
+    // manual way
+    // let connect_cache = connect_cache(host.clone());
+    // match connect_cache {
+    //     Ok(_) => {}
+    //     Err(err) => return Err(err),
+    // }
+
+    // let connect_email = connect_email(host);
+    // match connect_email {
+    //     Ok(_) => {}
+    //     Err(err) => return Err(err),
+    // }
+
+    // return Ok("connected to application".to_string());
+
+    // question mark operator (?)
+    connect_cache(host.clone())?;
+    connect_email(host)?;
+    Ok("connected to application".to_string())
+}
+
+#[test]
+fn test_question_mark_operator() {
+    let result = connect_application(Some("localhost".to_string()));
+    let result = connect_application(None);
+    match result {
+        Ok(_) => println!("successfully connected to application"),
+        Err(_) => println!("failed to connect to application"),
+    }
+}
