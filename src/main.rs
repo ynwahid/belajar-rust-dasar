@@ -1,5 +1,5 @@
 mod model;
-use std::collections::VecDeque;
+use std::collections::{LinkedList, VecDeque};
 
 use model::User;
 
@@ -1434,6 +1434,7 @@ fn test_vector() {
         println!("{}", name);
     }
     println!("{:?}", names);
+    println!("{}", names[0]);
 }
 
 #[test]
@@ -1442,6 +1443,19 @@ fn test_vector_deque() {
     names.push_back(String::from("Nur"));
     names.push_back(String::from("Wahid"));
     names.push_front(String::from("Ucup"));
+
+    for name in &names {
+        println!("{}", name);
+    }
+    println!("{}", names[0]);
+}
+
+#[test]
+fn test_linked_list() {
+    let mut names = LinkedList::<String>::new();
+    names.push_front(String::from("Ucup"));
+    names.push_back(String::from("Nur"));
+    names.push_back(String::from("Wahid"));
 
     for name in &names {
         println!("{}", name);
