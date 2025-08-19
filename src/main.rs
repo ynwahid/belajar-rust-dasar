@@ -1,5 +1,5 @@
 mod model;
-use std::collections::{LinkedList, VecDeque};
+use std::collections::{HashMap, LinkedList, VecDeque};
 
 use model::User;
 
@@ -1460,4 +1460,16 @@ fn test_linked_list() {
     for name in &names {
         println!("{}", name);
     }
+}
+
+#[test]
+fn test_hash_map() {
+    let mut map: HashMap<String, String> = HashMap::<String, String>::new();
+    map.insert(String::from("name"), String::from("Ucup"));
+    map.insert(String::from("age"), String::from("20"));
+
+    let name = map.get("name");
+    let age = map.get("age");
+    println!("Name: {}", name.unwrap());
+    println!("Age: {}", age.unwrap());
 }
