@@ -1,5 +1,5 @@
 mod model;
-use std::collections::{HashMap, LinkedList, VecDeque};
+use std::collections::{BTreeMap, HashMap, LinkedList, VecDeque};
 
 use model::User;
 
@@ -1467,9 +1467,34 @@ fn test_hash_map() {
     let mut map: HashMap<String, String> = HashMap::<String, String>::new();
     map.insert(String::from("name"), String::from("Ucup"));
     map.insert(String::from("age"), String::from("20"));
+    map.insert(String::from("country"), String::from("Indonesia"));
+
+    for kv in &map {
+        println!("Key: {}, Value: {}", kv.0, kv.1);
+    }
 
     let name = map.get("name");
     let age = map.get("age");
     println!("Name: {}", name.unwrap());
     println!("Age: {}", age.unwrap());
+}
+
+#[test]
+fn test_btree_map() {
+    let mut map: BTreeMap<String, String> = BTreeMap::<String, String>::new();
+    map.insert(String::from("name"), String::from("Ucup"));
+    map.insert(String::from("age"), String::from("20"));
+    map.insert(String::from("country"), String::from("Indonesia"));
+
+    for kv in &map {
+        println!("Key: {}, Value: {}", kv.0, kv.1);
+    }
+
+    let name = map.get("name");
+    let age = map.get("age");
+    let country = map.get("country");
+
+    println!("Name: {}", name.unwrap());
+    println!("Age: {}", age.unwrap());
+    println!("Country: {}", country.unwrap());
 }
