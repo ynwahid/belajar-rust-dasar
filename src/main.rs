@@ -1,4 +1,6 @@
 mod model;
+use std::collections::VecDeque;
+
 use model::User;
 
 #[test]
@@ -1432,4 +1434,16 @@ fn test_vector() {
         println!("{}", name);
     }
     println!("{:?}", names);
+}
+
+#[test]
+fn test_vector_deque() {
+    let mut names = VecDeque::<String>::new();
+    names.push_back(String::from("Nur"));
+    names.push_back(String::from("Wahid"));
+    names.push_front(String::from("Ucup"));
+
+    for name in &names {
+        println!("{}", name);
+    }
 }
