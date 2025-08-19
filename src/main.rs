@@ -1,5 +1,6 @@
 mod model;
 use std::collections::{BTreeMap, BTreeSet, HashMap, HashSet, LinkedList, VecDeque};
+use std::vec;
 
 use model::User;
 
@@ -1545,4 +1546,22 @@ fn test_iterator() {
     for value in array.iter() {
         println!("array iter: {}", value);
     }
+}
+
+#[test]
+fn test_iterator_vector() {
+    let vector: Vec<i32> = vec![1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+    println!("{:?}", vector);
+
+    let sum: i32 = vector.iter().sum();
+    println!("{}", sum);
+
+    let count: usize = vector.iter().count();
+    println!("{}", count);
+
+    let doubled: Vec<i32> = vector.iter().map(|x| -> i32 { x * 2 }).collect();
+    println!("{:?}", doubled);
+
+    let odd: Vec<&i32> = vector.iter().filter(|x| *x % 2 != 0).collect();
+    println!("{:?}", odd);
 }
