@@ -1582,3 +1582,24 @@ fn test_panic() {
     connect_database(Some(String::from("localhost")));
     // connect_database(None);
 }
+
+fn connect_cache(host: Option<String>) -> Result<String, String> {
+    match host {
+        None => Err("No cache host provided".to_string()),
+        Some(host) => Ok(format!("Connecting to cache {}", host)),
+    }
+}
+
+#[test]
+fn test_recoverable_error() {
+    // let cache = connect_cache(Some("localhost".to_string()));
+    let cache = connect_cache(None);
+    match cache {
+        Ok(host) => {
+            println!("successful to connect host: {}", host);
+        }
+        Err(error) => {
+            println!("failed to connect cache, with message: {}", error)
+        }
+    }
+}
