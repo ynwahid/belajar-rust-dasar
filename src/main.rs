@@ -1,5 +1,5 @@
 mod model;
-use std::collections::{BTreeMap, HashMap, HashSet, LinkedList, VecDeque};
+use std::collections::{BTreeMap, BTreeSet, HashMap, HashSet, LinkedList, VecDeque};
 
 use model::User;
 
@@ -1502,6 +1502,21 @@ fn test_btree_map() {
 #[test]
 fn test_hash_set() {
     let mut names: HashSet<String> = HashSet::new();
+    names.insert(String::from("Ucup"));
+    names.insert(String::from("Ucup"));
+    names.insert(String::from("Nur"));
+    names.insert(String::from("Nur"));
+    names.insert(String::from("Wahid"));
+    names.insert(String::from("Wahid"));
+
+    for value in names {
+        println!("{}", value);
+    }
+}
+
+#[test]
+fn test_btree_set() {
+    let mut names: BTreeSet<String> = BTreeSet::new();
     names.insert(String::from("Ucup"));
     names.insert(String::from("Ucup"));
     names.insert(String::from("Nur"));
