@@ -1565,3 +1565,20 @@ fn test_iterator_vector() {
     let odd: Vec<&i32> = vector.iter().filter(|x| *x % 2 != 0).collect();
     println!("{:?}", odd);
 }
+
+fn connect_database(host: Option<String>) {
+    match host {
+        None => {
+            panic!("No database host provided");
+        }
+        Some(host) => {
+            println!("Connecting to database {}", host);
+        }
+    }
+}
+
+#[test]
+fn test_panic() {
+    connect_database(Some(String::from("localhost")));
+    // connect_database(None);
+}
