@@ -1414,3 +1414,22 @@ fn test_counter() {
 
     println!("{}", counter.counter);
 }
+
+#[test]
+fn test_vector() {
+    let array = ["Ucup", "Nur", "Wahid"];
+    for arr in array {
+        println!("{}", arr);
+    }
+    println!("{:?}", array);
+
+    let mut names: Vec<String> = Vec::<String>::new();
+    names.push(String::from("Ucup"));
+    names.push(String::from("Nur"));
+    names.push(String::from("Wahid"));
+
+    for name in &names {
+        println!("{}", name);
+    }
+    println!("{:?}", names);
+}
