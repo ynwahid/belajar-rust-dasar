@@ -1528,3 +1528,21 @@ fn test_btree_set() {
         println!("{}", value);
     }
 }
+
+#[test]
+fn test_iterator() {
+    let array: [i32; 5] = [1, 2, 3, 4, 5];
+    let mut iterator = array.iter();
+
+    while let Some(value) = iterator.next() {
+        println!("iterator next: {}", value);
+    }
+
+    for value in array {
+        println!("array: {}", value);
+    }
+
+    for value in array.iter() {
+        println!("array iter: {}", value);
+    }
+}
