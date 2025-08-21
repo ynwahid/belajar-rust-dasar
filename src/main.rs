@@ -1692,3 +1692,29 @@ fn test_lifetime_annotation_dangling_reference() {
     }
     println!("{}", result);
 }
+
+struct Student<'a, 'b> {
+    name: &'a str,
+    last_name: &'b str,
+}
+
+fn longest_student_name<'a, 'b>(student1: Student<'a, 'b>, student2: Student<'a, 'b>) -> &'a str {
+    if student1.name.len() > student2.name.len() {
+        return student1.name;
+    }
+    return student2.name;
+}
+
+#[test]
+fn test_student() {
+    let student1 = Student {
+        name: "Ucup",
+        last_name: "Wahid",
+    };
+    let student2 = Student {
+        name: "Tardigrade",
+        last_name: "Miniscule",
+    };
+    let result = longest_student_name(student1, student2);
+    println!("{}", result);
+}
