@@ -1678,3 +1678,17 @@ fn test_lifetime_annotation() {
     let longest = longest("Ucup", "Nur");
     println!("{}", longest);
 }
+
+#[test]
+fn test_lifetime_annotation_dangling_reference() {
+    // TODO: Ask ChatGPT
+    let str1 = String::from("Ucup");
+    let str2 = String::from("Wahid");
+    let result: &str;
+    {
+        // dangling reference
+        // let str2 = String::from("Wahid");
+        result = longest(str1.as_str(), str2.as_str());
+    }
+    println!("{}", result);
+}
