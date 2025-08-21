@@ -1741,3 +1741,21 @@ fn test_lifetime_annotation_method() {
     let longest = student1.longest_name(&student2);
     println!("{}", longest);
 }
+
+struct Teacher<'a, ID>
+where
+    ID: Ord,
+{
+    id: ID,
+    name: &'a str,
+}
+
+#[test]
+fn test_lifetime_annotation_generic() {
+    let teacher = Teacher {
+        id: 10,
+        name: "Ucup",
+    };
+    println!("{}", teacher.id);
+    println!("{}", teacher.name);
+}
