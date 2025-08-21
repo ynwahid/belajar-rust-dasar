@@ -1642,3 +1642,26 @@ fn test_question_mark_operator() {
         Err(_) => println!("failed to connect to application"),
     }
 }
+
+#[test]
+fn test_dangling_reference() {
+    let r: i32;
+    {
+        let x = 5;
+        r = &x;
+    }
+    println!("{}", r);
+}
+
+fn longest(value1: &str, value2: &str) -> &str {
+    if value1.len() > value2.len() {
+        return value1;
+    }
+    return value2;
+}
+
+#[test]
+fn test_function_lifetime() {
+    let longest = longest("satu", "dua");
+    println!("{}", longest);
+}
