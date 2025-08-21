@@ -1643,17 +1643,30 @@ fn test_question_mark_operator() {
     }
 }
 
-#[test]
-fn test_dangling_reference() {
-    let r: i32;
-    {
-        let x = 5;
-        r = &x;
-    }
-    println!("{}", r);
-}
+// #[test]
+// fn test_dangling_reference() {
+//     let r: i32;
+//     {
+//         let x = 5;
+//         r = &x;
+//     }
+//     println!("{}", r);
+// }
 
-fn longest(value1: &str, value2: &str) -> &str {
+// fn longest(value1: &str, value2: &str) -> &str {
+//     if value1.len() > value2.len() {
+//         return value1;
+//     }
+//     return value2;
+// }
+
+// #[test]
+// fn test_function_lifetime() {
+//     let longest = longest("satu", "dua");
+//     println!("{}", longest);
+// }
+
+fn longest<'a>(value1: &'a str, value2: &'a str) -> &'a str {
     if value1.len() > value2.len() {
         return value1;
     }
@@ -1661,7 +1674,7 @@ fn longest(value1: &str, value2: &str) -> &str {
 }
 
 #[test]
-fn test_function_lifetime() {
-    let longest = longest("satu", "dua");
+fn test_lifetime_annotation() {
+    let longest = longest("Ucup", "Nur");
     println!("{}", longest);
 }
