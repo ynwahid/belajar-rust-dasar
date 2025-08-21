@@ -1718,3 +1718,26 @@ fn test_student() {
     let result = longest_student_name(student1, student2);
     println!("{}", result);
 }
+
+impl<'a, 'b> Student<'a, 'b> {
+    fn longest_name(&self, student: &Student<'a, 'b>) -> &'a str {
+        if self.name.len() > student.name.len() {
+            return self.name;
+        }
+        return student.name;
+    }
+}
+
+#[test]
+fn test_lifetime_annotation_method() {
+    let student1 = Student {
+        name: "Ucup",
+        last_name: "Wahid",
+    };
+    let student2 = Student {
+        name: "Tardigrade",
+        last_name: "Miniscule",
+    };
+    let longest = student1.longest_name(&student2);
+    println!("{}", longest);
+}
