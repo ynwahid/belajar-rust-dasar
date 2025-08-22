@@ -1823,3 +1823,11 @@ fn test_box_enum() {
 fn print_product_category(category: &ProductCategory) {
     println!("{:?}", category)
 }
+
+#[test]
+fn test_dereference() {
+    let value1 = Box::new(10);
+    let value2 = Box::new(20);
+
+    println!("{}", *value1 * *value2);
+}
