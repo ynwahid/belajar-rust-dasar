@@ -1862,3 +1862,21 @@ fn test_deref_reference() {
     };
     say_hello_reference(&name);
 }
+
+struct Book {
+    title: String,
+}
+
+impl Drop for Book {
+    fn drop(&mut self) {
+        println!("Dropping book: {}", self.title);
+    }
+}
+
+#[test]
+fn test_drop() {
+    let book = Book {
+        title: "Rust Programming".to_string(),
+    };
+    println!("{}", book.title);
+}
