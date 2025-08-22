@@ -1759,3 +1759,31 @@ fn test_lifetime_annotation_generic() {
     println!("{}", teacher.id);
     println!("{}", teacher.name);
 }
+
+#[derive(Debug, PartialEq, PartialOrd)]
+struct Company {
+    name: String,
+    location: String,
+    website: String,
+}
+
+#[test]
+fn test_derive_attribute() {
+    let company = Company {
+        name: "Ucup".to_string(),
+        location: "Indonesia".to_string(),
+        website: "https://www.github.com/ynwahid".to_string(),
+    };
+    println!("{:?}", company);
+
+    let company2 = Company {
+        name: "Ucup".to_string(),
+        location: "Indonesia".to_string(),
+        website: "https://www.github.com/ynwahid".to_string(),
+    };
+    let is_equal = company == company2;
+    println!("{}", is_equal);
+
+    let is_greater = company > company2;
+    println!("{}", is_greater);
+}
