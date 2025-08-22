@@ -1831,3 +1831,22 @@ fn test_dereference() {
 
     println!("{}", *value1 * *value2);
 }
+
+struct MyValue<T> {
+    value: T,
+}
+
+impl<T> std::ops::Deref for MyValue<T> {
+    type Target = T;
+
+    fn deref(&self) -> &Self::Target {
+        return &self.value;
+    }
+}
+
+#[test]
+fn test_dereference_struct() {
+    let value = MyValue { value: 10 };
+    let real_value: i32 = *value;
+    println!("real value: {}", real_value)
+}
