@@ -1,5 +1,6 @@
 mod model;
 use std::collections::{BTreeMap, BTreeSet, HashMap, HashSet, LinkedList, VecDeque};
+use std::iter::Product;
 use std::vec;
 
 use model::User;
@@ -1786,4 +1787,39 @@ fn test_derive_attribute() {
 
     let is_greater = company > company2;
     println!("{}", is_greater);
+}
+
+fn display_number(value: i32) {
+    println!("{}", value);
+}
+
+fn display_number_reference(value: &i32) {
+    println!("{}", value);
+}
+
+#[test]
+fn test_box() {
+    let value: Box<i32> = Box::new(10);
+    display_number(*value);
+    display_number_reference(&value);
+}
+
+#[derive(Debug)]
+enum ProductCategory {
+    Of(String, Box<ProductCategory>),
+    End,
+}
+
+#[test]
+fn test_box_enum() {
+    let category_dell = Box::new(ProductCategory::Of(
+        "Dell".to_string(),
+        Box::new(ProductCategory::End),
+    ));
+    let category = ProductCategory::Of("Laptop".to_string(), category_dell);
+    print_product_category(&category);
+}
+
+fn print_product_category(category: &ProductCategory) {
+    println!("{:?}", category)
 }
