@@ -1850,3 +1850,15 @@ fn test_dereference_struct() {
     let real_value: i32 = *value;
     println!("real value: {}", real_value)
 }
+
+fn say_hello_reference(name: &String) {
+    println!("Hello {}", name)
+}
+
+#[test]
+fn test_deref_reference() {
+    let name = MyValue {
+        value: "Ucup".to_string(),
+    };
+    say_hello_reference(&name);
+}
