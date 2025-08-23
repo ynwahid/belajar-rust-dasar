@@ -1,6 +1,7 @@
 mod model;
 use std::collections::{BTreeMap, BTreeSet, HashMap, HashSet, LinkedList, VecDeque};
 use std::iter::Product;
+use std::rc::Rc;
 use std::vec;
 
 use model::User;
@@ -1879,4 +1880,25 @@ fn test_drop() {
         title: "Rust Programming".to_string(),
     };
     println!("{}", book.title);
+}
+
+enum Brand {
+    Of(String, Rc<Brand>),
+    End,
+}
+
+#[test]
+fn test_multiple_ownership_box() {
+    let apple = Rc::new(Brand::Of("Apple".to_string(), Rc::new(Brand::End)));
+    println!("Apple reference count: {}", Rc::strong_count(&apple));
+
+    let laptop = Rc::new(Brand::Of("Apple".to_string(), Rc::clone(&apple)));
+    println!("Apple reference count: {}", Rc::strong_count(&apple));
+
+    {
+        let smartphone = Rc::new(Brand::Of("Apple".to_string(), Rc::clone(&apple)));
+        println!("Apple reference count: {}", Rc::strong_count(&apple));
+    }
+
+    println!("Apple reference count: {}", Rc::strong_count(&apple));
 }
