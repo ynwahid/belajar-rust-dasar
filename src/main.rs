@@ -1928,3 +1928,18 @@ static APPLICATION: &str = "My Application";
 fn test_static() {
     println!("{}", APPLICATION);
 }
+
+static mut COUNTER: u32 = 0;
+
+unsafe fn increment() {
+    COUNTER += 1
+}
+
+#[test]
+fn test_unsafe() {
+    unsafe {
+        increment();
+        COUNTER += 1;
+        println!("Counter: {}", COUNTER);
+    }
+}
