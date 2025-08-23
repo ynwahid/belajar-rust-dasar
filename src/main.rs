@@ -1943,3 +1943,24 @@ fn test_unsafe() {
     //     println!("Counter: {}", COUNTER);
     // }
 }
+
+macro_rules! hi {
+    () => {
+        println!("Hi");
+    };
+    ($name: expr) => {
+        println!("Hi {}", $name);
+    };
+}
+
+#[test]
+fn test_macro() {
+    hi!();
+    hi!("Ucup");
+    hi! {
+        "Nur"
+    };
+
+    let name = "Wahid";
+    hi!(name);
+}
