@@ -1,4 +1,5 @@
 mod model;
+use std::cell::RefCell;
 use std::collections::{BTreeMap, BTreeSet, HashMap, HashSet, LinkedList, VecDeque};
 use std::iter::Product;
 use std::rc::Rc;
@@ -1901,4 +1902,22 @@ fn test_multiple_ownership_box() {
     }
 
     println!("Apple reference count: {}", Rc::strong_count(&apple));
+}
+
+#[derive(Debug)]
+struct Seller {
+    name: RefCell<String>,
+    active: RefCell<bool>,
+}
+
+#[test]
+fn test_ref_cell() {
+    let seller = Seller {
+        name: RefCell::new("Ucup".to_string()),
+        active: RefCell::new(true),
+    };
+
+    let mut result = seller.name.borrow_mut();
+    *result = "Nur".to_string();
+    println!("{:?}", seller);
 }
