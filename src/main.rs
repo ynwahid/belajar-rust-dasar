@@ -1964,3 +1964,22 @@ fn test_macro() {
     let name = "Wahid";
     hi!(name);
 }
+
+macro_rules! iterate {
+    ($array: expr) => {
+        for i in $array {
+            println!("{}", i);
+        }
+    };
+    ($($item: expr), *) => {
+        $(
+            println!("{}", $item);
+        )*
+    };
+}
+
+#[test]
+fn test_iterate() {
+    iterate!([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+    iterate!(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+}
