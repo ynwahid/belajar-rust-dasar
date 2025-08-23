@@ -1921,3 +1921,10 @@ fn test_ref_cell() {
     *result = "Nur".to_string();
     println!("{:?}", seller);
 }
+
+static APPLICATION: &str = "My Application";
+
+#[test]
+fn test_static() {
+    println!("{}", APPLICATION);
+}
